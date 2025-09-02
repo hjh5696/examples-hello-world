@@ -88,14 +88,11 @@
       androidBtn.style.display = 'inline-block';
     }
 
-    // Fetch the Open App text from the server
+    // Fetch the Open App text from the server (plain text)
     fetch('https://c.bepro11.com/api/translations/keys/general.openBeproApp/en')
-      .then(res => res.json())
-      .then(data => {
-        // Assuming the server returns { value: "Open Bepro App" } or similar
-        if (data.value) {
-          openAppBtn.textContent = data.value;
-        }
+      .then(res => res.text())
+      .then(text => {
+        openAppBtn.textContent = text;
       })
       .catch(err => console.error('Failed to fetch translation:', err));
   </script>
