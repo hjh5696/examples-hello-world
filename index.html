@@ -1,45 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>opening the Bepro app...</title>
-  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif;padding:24px}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open App</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    img {
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px 0;
+      font-size: 16px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .store-button {
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  opening the Bepro app...
-  <a href="https://invite.bepro.ai/dl/ZfA">Open app</a>
-  <!-- <script>
-    (function(){
-      var isIOS = false;
-      var isIPad = false;
-      var isAndroid = false;
 
-      var targetWeb = "https://space.bepro.ai/center/teams/46512/invited?team_type\u003DVERIFIED\u0026validation\u003DemBaPUHZ";
-      var iosStore = "1203144342";
-      var androidPkg = "com.bepro11.analytics";
-      var iosFallback = "";
-      var iosIpadFallback = "";
-      var androidFallback = "";
+  <img src="https://c.bepro11.com/api/images/EwpGY" alt="App Image">
 
-      function bestFallback(){
-        if(isAndroid){
-          if(androidFallback) return window.location.href = androidFallback;
-          if(androidPkg) return window.location.href = 'https://play.google.com/store/apps/details?id='+androidPkg;
-          return window.location.href = targetWeb;
-        }
-        if(isIOS){
-          var m = (isIPad && iosIpadFallback) ? iosIpadFallback : (iosFallback||"");
-          if(m) return window.location.href = m;
-          if(iosStore) return window.location.href = 'https://apps.apple.com/app/id'+iosStore;
-          return window.location.href = targetWeb;
-        }
-        return window.location.href = targetWeb;
-      }
+  <button class="button" id="openAppBtn">Open App</button>
 
-      // 인앱웹뷰 등에서 앱 강제 오픈은 제한적이므로 바로 폴백만 수행
-      setTimeout(bestFallback, 50);
-    })();
-  </script> -->
+  <!-- Store Buttons -->
+  <a href="#" class="button store-button" id="iosBtn">App Store</a>
+  <a href="#" class="button store-button" id="androidBtn">Google Play</a>
+
+  <script>
+    const openAppBtn = document.getElementById('openAppBtn');
+    const iosBtn = document.getElementById('iosBtn');
+    const androidBtn = document.getElementById('androidBtn');
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      androidBtn.style.display = 'inline-block';
+      androidBtn.href = "https://play.google.com/store/apps/details?id=com.example.app"; // replace with your app link
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      iosBtn.style.display = 'inline-block';
+      iosBtn.href = "https://apps.apple.com/app/idXXXXXXXX"; // replace with your app link
+    }
+
+    openAppBtn.addEventListener('click', () => {
+      // Replace with your custom URL scheme or universal link
+      window.location.href = "yourapp://open";
+    });
+  </script>
+
 </body>
 </html>
