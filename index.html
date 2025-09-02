@@ -17,9 +17,9 @@
       text-align: center;
     }
 
-    img {
-      max-width: 80%;
-      height: auto;
+    img.main-image {
+      width: 100px;
+      height: 100px;
       margin-bottom: 20px;
     }
 
@@ -36,41 +36,57 @@
       text-decoration: none;
     }
 
-    .store-button {
-      display: none;
+    .store-badges {
+      display: flex;
+      gap: 10px;
       margin-top: 10px;
+    }
+
+    .store-badges img {
+      height: 50px;
+      object-fit: contain;
     }
   </style>
 </head>
 <body>
 
-  <img src="https://c.bepro11.com/api/images/EwpGY" alt="App Image">
+  <img class="main-image" src="https://c.bepro11.com/api/images/EwpGY" alt="App Image">
 
-  <button class="button" id="openAppBtn">Open App</button>
+  <a class="button" href="https://invite.bepro.ai/dl/ZfA">Open App</a>
 
-  <!-- Store Buttons -->
-  <a href="#" class="button store-button" id="iosBtn">App Store</a>
-  <a href="#" class="button store-button" id="androidBtn">Google Play</a>
+  <div class="store-badges">
+    <a href="https://apps.apple.com/app/id1203144342" id="iosBtn">
+      <img 
+        class="apple"
+        src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" 
+        alt="Download on the App Store">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.bepro11.analytics" id="androidBtn">
+      <img 
+        class="android" 
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" 
+        alt="Get it on Google Play">
+    </a>
+  </div>
 
   <script>
-    const openAppBtn = document.getElementById('openAppBtn');
     const iosBtn = document.getElementById('iosBtn');
     const androidBtn = document.getElementById('androidBtn');
 
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
+    // Show only the relevant store button
     if (/android/i.test(userAgent)) {
+      iosBtn.style.display = 'none';
       androidBtn.style.display = 'inline-block';
-      androidBtn.href = "https://play.google.com/store/apps/details?id=com.example.app"; // replace with your app link
     } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      androidBtn.style.display = 'none';
       iosBtn.style.display = 'inline-block';
-      iosBtn.href = "https://apps.apple.com/app/idXXXXXXXX"; // replace with your app link
+    } else {
+      // Show both for desktop fallback
+      iosBtn.style.display = 'inline-block';
+      androidBtn.style.display = 'inline-block';
     }
-
-    openAppBtn.addEventListener('click', () => {
-      // Replace with your custom URL scheme or universal link
-      window.location.href = "yourapp://open";
-    });
   </script>
 
 </body>
