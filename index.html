@@ -52,7 +52,7 @@
 
   <img class="main-image" src="https://c.bepro11.com/api/images/EwpGY" alt="App Image">
 
-  <a class="button" href="https://invite.bepro.ai/dl/ZfA">Open App</a>
+  <a class="button" href="https://invite.bepro.ai/dl/ZfA" id="openAppBtn">Open App</a>
 
   <div class="store-badges">
     <a href="https://apps.apple.com/app/id1203144342" id="iosBtn">
@@ -70,6 +70,7 @@
   </div>
 
   <script>
+    const openAppBtn = document.getElementById('openAppBtn');
     const iosBtn = document.getElementById('iosBtn');
     const androidBtn = document.getElementById('androidBtn');
 
@@ -83,10 +84,20 @@
       androidBtn.style.display = 'none';
       iosBtn.style.display = 'inline-block';
     } else {
-      // Show both for desktop fallback
       iosBtn.style.display = 'inline-block';
       androidBtn.style.display = 'inline-block';
     }
+
+    // Fetch the Open App text from the server
+    fetch('https://c.bepro11.com/api/translations/keys/general.openBeproApp/en')
+      .then(res => res.json())
+      .then(data => {
+        // Assuming the server returns { value: "Open Bepro App" } or similar
+        if (data.value) {
+          openAppBtn.textContent = data.value;
+        }
+      })
+      .catch(err => console.error('Failed to fetch translation:', err));
   </script>
 
 </body>
