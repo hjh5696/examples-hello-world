@@ -1,99 +1,24 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>opening the Bepro app...</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embedded Notion Page</title>
   <style>
-    body {
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      height:100vh; margin:0; font-family:Arial, sans-serif; background:#f9f9f9; text-align:center;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
     }
-    img.main-image { width:100px; height:100px; margin-bottom:20px;}
-    .button { display:inline-block; padding:12px 24px; margin:10px 0; font-size:16px; color:#fff;
-      background:#007bff; border:none; border-radius:6px; cursor:pointer; text-decoration:none; }
-    .store-badges { display:flex; gap:10px; margin-top:10px; }
-    .store-badges img { height:50px; object-fit:contain; }
-    .open-store-btn { display:inline-block; }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
-  <img class="main-image" src="https://c.bepro11.com/api/images/EwpGY" alt="Bepro App Image">
-  <a class="button" href="https://invite.bepro.ai/dl/ZfA?resolve=true" id="openTargetOrFallbackBtn">Open Bepro App</a>
-  <div class="store-badges">
-    
-    <a href="https://apps.apple.com/app/id1203144342" class="open-store-btn" id="iosBtn">
-      <img class="apple"
-           src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9"
-           alt="Download on the App Store">
-    </a>
-    
-    
-    <a href="https://play.google.com/store/apps/details?id=com.bepro11.analytics" class="open-store-btn" id="androidBtn">
-      <img class="android"
-           src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-           alt="Get it on Google Play">
-    </a>
-    
-  </div>
-
-  <script>
-    (function(){
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      const isAndroid = /android/i.test(userAgent) || false;
-      const isIOSPhone = (/iPhone|iPod/.test(userAgent) && !window.MSStream) || false;
-      const isIPad = (/iPad/.test(userAgent) && !window.MSStream) || false;
-      const isIPadLike = (navigator.platform === 'MacIntel' && navigator.maxTouchPoints >= 1); // iPadOS 13+ 브라우저
-      const isIOS = isIOSPhone || isIPad || isIPadLike;
-
-      const targetLink = "https://space.bepro.ai/center/teams/46512/invited?team_type\u003DVERIFIED\u0026validation\u003DemBaPUHZ";
-      const resolveDLUrl = "https://invite.bepro.ai/dl/ZfA?resolve\u003Dtrue";
-      const iosFallbackLink = "";
-      const iosIpadFallbackLink = "";
-      const androidFallbackLink = "";
-
-      const openTargetOrFallbackBtn = document.getElementById('openTargetOrFallbackBtn')
-      const iosBtn = document.getElementById('iosBtn');
-      const androidBtn = document.getElementById('androidBtn');
-
-      // openTargetOrFallbackBtn 버튼 눌렀을때 열리는 url
-      function bestFallbackLink() {
-        if (isAndroid) {
-          if(androidFallbackLink) return androidFallbackLink;
-          return resolveDLUrl;  // AppLink 실행을 위한 resolve url
-        }
-        else if (isIOS) {
-          if ((isIPad || isIPadLike) && iosIpadFallbackLink) return iosIpadFallbackLink;
-          else if (iosFallbackLink) return iosFallbackLink;
-          return resolveDLUrl;  // UniversalLink 실행을 위한 resolve url
-        }
-        return targetLink;  // 모바일 아닌경우 바로 targetLink로 가도 됨
-      }
-
-      const fallbackLink = bestFallbackLink();
-      openTargetOrFallbackBtn.href = fallbackLink;
-
-      // 스토어 배지는 플랫폼에 맞춰 노출
-      if (isAndroid) {
-        if (iosBtn) iosBtn.style.display = 'none';
-        if (androidBtn) androidBtn.style.display = 'inline-block';
-      } else if (isIOS || isIPad) {
-        if (androidBtn) androidBtn.style.display = 'none';
-        if (iosBtn) iosBtn.style.display = 'inline-block';
-      } else {
-        if (iosBtn) iosBtn.style.display = 'inline-block';
-        if (androidBtn) androidBtn.style.display = 'inline-block';
-
-        // 모바일 아닌경우 자동 redirect
-        try {
-          window.location.replace(fallbackLink);
-        } finally {
-          return;
-        }
-      }
-
-    })();
-  </script>
+  <iframe src="https://bepro.notion.site/ebd/a4bc7b1786594304ba94642bd43f0b7a"></iframe>
 </body>
 </html>
